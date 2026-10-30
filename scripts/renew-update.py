@@ -26,7 +26,7 @@ class GitHub:
         try:
             response = self.opener.open(urllib.request.Request(API+route, data=payload, headers=headers, method=method), timeout=60)
         except urllib.error.HTTPError as error:
-            if not binary or method!='GET' or error.code!=302: raise RenewalError('GitHub request rejected') from None
+            if not binary or method!='GET' or error.code!=302: raise RenewalError('GitHub request rejected: HTTP '+str(error.code)) from None
             target = error.headers.get('Location',''); parsed=urllib.parse.urlsplit(target)
             if parsed.scheme!='https' or parsed.hostname!='release-assets.githubusercontent.com' or parsed.username or parsed.password or parsed.port or parsed.fragment:
                 raise RenewalError('Asset redirect denied')
@@ -139,4 +139,5 @@ def main():
 
 if __name__=='__main__':
     try:main()
-    except Exception:raise SystemExit('NexPilot metadata renewal failed. Existing release requires review; credentials are never printed.')
+    except RenewalError as error:raise SystemExit('NexPilot metadata renewal failed: '+str(error)+'. Credentials are never printed.')
+    except Exception as error:raise SystemExit('NexPilot metadata renewal failed ('+type(error).__name__+'). Credentials are never printed.')
