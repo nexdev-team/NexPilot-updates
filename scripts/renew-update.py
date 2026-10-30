@@ -128,7 +128,7 @@ def main():
             source=private/'source.json';zipfile=private/'release.zip';out=private/('result-'+str(counter)+'.json')
             source.write_bytes(envelope);zipfile.write_bytes(archive)
             result=subprocess.run(['php',str(root/'renew-update.php'),mode,str(source),str(zipfile),str(out)],capture_output=True)
-            if result.returncode:raise RenewalError('Signature, identity or ZIP validation failed')
+            if result.returncode:raise RenewalError('Signature, identity or ZIP validation failed during '+mode)
             return out.read_bytes()
         api=GitHub(os.environ.get('GITHUB_TOKEN',''))
         result=renew(api,lambda e,z:json.loads(php('inspect',e,z)),lambda e,z:php('renew',e,z),int(time.time()),args.force)
