@@ -1,7 +1,7 @@
 <?php
 // Authenticate an existing release and renew only its time window. Never sign new code.
 if(PHP_SAPI!=='cli')exit(1);
-const RENEW_PUBLIC='CmAqjjgK/id809anjXzMqTIKLD7XxmGdtuY3v0guM1E=';
+const RENEW_PUBLIC='OD2vZ8XjERbhGL9uVQHtwu8MW9devDxygv8hp1LAJbQ=';
 function renewal_manifest(string $envelope,string $archive,string $public,int $now): array {
  $e=json_decode($envelope,true,16,JSON_THROW_ON_ERROR);
  $payload=$e['payload']??null;$sig=base64_decode($e['signature']??'',true);$key=base64_decode($public,true);
