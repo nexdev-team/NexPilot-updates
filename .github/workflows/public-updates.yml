@@ -31,6 +31,7 @@ jobs:
           extensions: sodium
           coverage: none
       - run: python3 tests/update-renewal.test.py
+      - run: python3 tests/maintenance.test.py
       - name: Renew existing signed public metadata only
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -47,6 +48,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/publish-pages.py
+      - name: Keep the public scheduled service active
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/maintain-schedule.py
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: _site
