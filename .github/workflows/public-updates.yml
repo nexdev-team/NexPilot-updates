@@ -37,6 +37,7 @@ jobs:
           NEXPILOT_SIGNING_KEY_B64: ${{ secrets.NEXPILOT_SIGNING_KEY_B64 }}
           RENEW_FORCE: ${{ inputs.force || false }}
         run: |
+          php -r 'require "scripts/renew-update.php"; $key=base64_decode(getenv("NEXPILOT_SIGNING_KEY_B64"),true); if(!is_string($key)||strlen($key)!==64)exit("Signing identity unavailable\n"); $public=sodium_crypto_sign_publickey_from_secretkey($key); sodium_memzero($key); echo "Configured public trust fingerprint: ".hash("sha256",$public).PHP_EOL; if(!hash_equals(base64_decode(RENEW_PUBLIC),$public))exit(1);'
           if [ "$RENEW_FORCE" = "true" ]; then
             python3 scripts/renew-update.py --force
           else
