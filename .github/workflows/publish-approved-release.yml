@@ -1,0 +1,61 @@
+name: Publish offline-approved Stable release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'release-candidates/**'
+      - 'scripts/approved-release.*'
+      - 'tests/approved-release.test.py'
+      - '.github/workflows/publish-approved-release.yml'
+permissions:
+  contents: read
+concurrency:
+  group: nexpilot-public-distribution
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.repository == 'nexdev-team/NexPilot-updates' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      published: ${{ steps.release.outputs.published }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@d52fc211a0436f8839a587b3b5b8efddab4744ea
+        with:
+          php-version: '8.3'
+          extensions: sodium
+          coverage: none
+      - run: python3 tests/approved-release.test.py
+      - name: Prepare or publish exact offline-approved package
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/approved-release.py
+      - name: Assemble authenticated public files
+        if: steps.release.outputs.published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish-pages.py
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        if: steps.release.outputs.published == 'true'
+        with:
+          path: _site
+  deploy:
+    needs: publish
+    if: needs.publish.outputs.published == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy signed public files only
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
