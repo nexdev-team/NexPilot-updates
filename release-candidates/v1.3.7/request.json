@@ -1,0 +1,8 @@
+{
+  "version": "1.3.7",
+  "sha256": "29d1f4bb86d5ffee0f9b23ea222a2c2d27603a4cc6e9a7fc51a4a6d973cea4e1",
+  "bytes": 144489,
+  "source_commit": "f322c11134338caef2b6bebc8ca2d5e5ba190279",
+  "ci_run": 42786133551,
+  "notes": "- Added WooCommerce order filters and optional customer details for connections with account read access. Orders omit customer details by default.\n- Improved product search and detail lookup, account filters, and inventory of available plugin and theme updates.\n- Added a separate permission to disclose full account email addresses. Email addresses are masked by default.\n- Added dry-run previews for up to 20 account deletions. Each actual deletion still requires owner approval.\n- Expanded inspection and editing for supported editorial content types and Flatsome UX Blocks, and added SEOPress metadata support.\n- Improved capability discovery, proposal summaries, and error messages.\n- Added PHP syntax checks for maintenance uploads and edits, protected sensitive files and options on direct reads, and required separate owner approval for unrestricted PHP, SQL, and WP-CLI operations even in Full access mode."
+}
