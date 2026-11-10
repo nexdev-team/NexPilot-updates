@@ -1,0 +1,8 @@
+{
+  "version": "1.3.8",
+  "sha256": "ae656c233cae90a86d2fc524ed0a15cb94b887eb6f3c2d4b1c4f296a7a0a918c",
+  "bytes": 167045,
+  "source_commit": "5529ce0df3dfa70d7ecce533fcc4a2440f8b85a8",
+  "ci_run": 42798898730,
+  "notes": "- Added pagination, field selection, sorting and filters across account, commerce, content and auxiliary collections, including WPForms Pro and supported WooCommerce extensions.\n- Added bulk dry runs with exact target hashes, owner-configurable limits, scoped approvals, progress tracking and resumable jobs with per-item outcomes.\n- Added bulk account, product, order, post, media and coupon operations, CSV updates for existing products and approved field-level reverts for supported changes.\n- Added approved bulk updates for eligible inactive plugins, with verified archives and encrypted file snapshots for rollback.\n- Added targeted and grouped WordPress content object-cache invalidation."
+}

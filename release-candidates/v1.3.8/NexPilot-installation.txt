@@ -1,0 +1,9 @@
+NexPilot 1.3.8 by Nexdev
+
+For an existing installation, open Dashboard > Updates in WordPress and
+use the signed NexPilot update. Test on staging before updating production.
+
+For manual installation, upload the intact plugin ZIP via Plugins > Add New >
+Upload Plugin. On an existing installation, select Replace current with uploaded
+if WordPress offers that option. Open Tools > NexPilot to review permissions.
+Keep the ZIP and its accompanying signature files together for verification.
