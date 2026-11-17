@@ -1,0 +1,8 @@
+{
+  "version": "1.3.9",
+  "sha256": "00a5b4921e23522426c8d429c60964dff4cba1bd535bb14da94c1bf6b3ae138b",
+  "bytes": 167931,
+  "source_commit": "97ca2bcb800f03b0d75517c7a061cfca64a0ea44",
+  "ci_run": 44072914574,
+  "notes": "**EN** — Faster WordPress admin — the “changes await review” notice no longer decrypts every stored proposal on each page load; the Proposed changes tab now shows 20 proposals per page.\n\n**EL** — Πιο γρήγορο διαχειριστικό WordPress — η ειδοποίηση εκκρεμών αλλαγών δεν αποκρυπτογραφεί πλέον όλες τις προτάσεις σε κάθε σελίδα· η σελίδα «Proposed changes» δείχνει 20 προτάσεις ανά σελίδα."
+}
