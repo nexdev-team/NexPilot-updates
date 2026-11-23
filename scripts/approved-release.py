@@ -24,7 +24,7 @@ def authenticate(directory):
 def publish(api,directory,request,commit):
     version=request['version'];tag='v'+version;name='nexdev-site-connector-'+version+'.zip'
     latest=api.latest()
-    existing=[r for r in api.request('/releases') if r['tag_name']==tag]
+    existing=[r for r in api.request('/releases',limit=2*1024*1024) if r['tag_name']==tag]
     if len(existing)>1:raise RuntimeError('Ambiguous release identity')
     if tuple(map(int,latest['tag_name'][1:].split('.')))>tuple(map(int,version.split('.'))):raise RuntimeError('Refusing downgrade')
     release=existing[0] if existing else None
