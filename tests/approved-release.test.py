@@ -5,7 +5,7 @@ spec=importlib.util.spec_from_file_location('approved',root/'scripts/approved-re
 class Fake:
  def __init__(self):self.current={'id':1,'tag_name':'v1.0.3','draft':False,'assets':[]};self.releases=[];self.data={};self.next=100;self.publications=0
  def latest(self):return copy.deepcopy(self.current)
- def request(self,path,method='GET',data=None):
+ def request(self,path,method='GET',data=None,limit=262144):
   if path=='/releases' and method=='GET':return copy.deepcopy(self.releases)
   if path=='/releases' and method=='POST':
    r={'id':2,'assets':[],**data};self.releases.append(r);return copy.deepcopy(r)
