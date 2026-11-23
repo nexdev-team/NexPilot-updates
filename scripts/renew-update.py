@@ -20,6 +20,8 @@ class GitHub:
     def request(self, route, method='GET', data=None, binary=False, limit=262144):
         if not re.fullmatch(r'/releases(?:/latest|/[1-9][0-9]*(?:/assets)?|/assets/[1-9][0-9]*)?', route):
             raise RenewalError('API route denied')
+        if route == '/releases' and method == 'GET':
+            limit = max(limit, 2 * 1024 * 1024)
         headers = {'Authorization':'Bearer '+self.token, 'Accept':'application/octet-stream' if binary else 'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28', 'User-Agent':'NexPilot-metadata-renewal'}
         payload = json.dumps(data).encode() if data is not None else None
         if payload is not None: headers['Content-Type']='application/json'
