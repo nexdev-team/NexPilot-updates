@@ -1,0 +1,8 @@
+{
+  "version": "1.3.12",
+  "sha256": "f11f26a7b0f2bde2d1ad31c29bc9920639608dc05e4bec9d1bd7fef3d02a28db",
+  "bytes": 168824,
+  "source_commit": "9c9f5a5e3f2adf5042fe4efe0dcbe63cfd1b9f8b",
+  "ci_run": 45373760121,
+  "notes": "Corrected AI session instructions and bulk operation discovery to honor owner-authorized unattended maintenance. Approved proposal responses explicitly identify change_execute as the next action and report that no further WordPress approval is required."
+}
