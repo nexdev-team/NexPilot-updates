@@ -18,7 +18,7 @@ class Fake:
 class Tests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
-  cls.candidate=max((root/'release-candidates').iterdir());cls.approved=m.authenticate(cls.candidate)
+  cls.candidate=max((root/'release-candidates').iterdir(),key=lambda p:tuple(map(int,p.name[1:].split('.'))));cls.approved=m.authenticate(cls.candidate)
  def test_signature_and_tamper(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d)/self.candidate.name;shutil.copytree(self.candidate,p);(p/'request.json').write_text('{}')
