@@ -1,0 +1,8 @@
+{
+  "version": "1.3.11",
+  "sha256": "7eed80246d2548a11fa58c284d10deecedf3bcb50904c0a629594a8c58498364",
+  "bytes": 168567,
+  "source_commit": "a33b75196818ac172def046efd1c835c9dd550db",
+  "ci_run": 45369603386,
+  "notes": "Added an owner-selected option to include unrestricted maintenance in per-connection Full access for the chosen duration. PHP, SQL, file and WP-CLI operations use the active owner grant when enabled. Credential rotation resets this authorization."
+}
